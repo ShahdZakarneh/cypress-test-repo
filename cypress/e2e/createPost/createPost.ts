@@ -2,8 +2,10 @@ import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import EditorPageActions from "cypress/pageObject/editorPage/actions";
 import LoginPageActions from "cypress/pageObject/loginPage/actions";
 import ProfilePageActions from "cypress/pageObject/profiePage/actions";
+import LoginPageAssertion from "cypress/pageObject/loginPage/assertions";
 
 const loginPageActions = new LoginPageActions();
+const loginPageAssertion = new LoginPageAssertion();
 const editorPageActions = new EditorPageActions();
 const profilePageActions = new ProfilePageActions();
 
@@ -27,7 +29,8 @@ When("Click on Sign in button", () => {
 });
 
 Then("Your Feed should be shown", () => {
-  cy.contains("Your Feed").should("be.visible");
+  //cy.contains("Your Feed").should("be.visible");
+  loginPageAssertion.urlassertion();
 });
 
 When("I click on New Post", () => {
