@@ -1,13 +1,17 @@
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import EditorPageActions from "cypress/pageObject/editorPage/actions";
+import EditorPageAssertion from "cypress/pageObject/editorPage/assertion";
 import LoginPageActions from "cypress/pageObject/loginPage/actions";
-import ProfilePageActions from "cypress/pageObject/profiePage/actions";
 import LoginPageAssertion from "cypress/pageObject/loginPage/assertions";
+import ProfilePageActions from "cypress/pageObject/profiePage/actions";
+import ProfilePageAssertion from "cypress/pageObject/profiePage/assertion";
 
 const loginPageActions = new LoginPageActions();
 const loginPageAssertion = new LoginPageAssertion();
 const editorPageActions = new EditorPageActions();
+const editorPageAssertion = new EditorPageAssertion();
 const profilePageActions = new ProfilePageActions();
+const profilePageAssertion = new ProfilePageAssertion();
 
 const url = "https://react-redux.realworld.io/#/login";
 
@@ -30,7 +34,7 @@ When("Click on Sign in button", () => {
 
 Then("Your Feed should be shown", () => {
   //cy.contains("Your Feed").should("be.visible");
-  loginPageAssertion.urlassertion();
+  loginPageAssertion.yourFeedIsVisible();
 });
 
 When("I click on New Post", () => {
@@ -39,7 +43,8 @@ When("I click on New Post", () => {
 });
 
 Then("URL assertion", () => {
-  cy.url().should("include", "#/editor");
+  //cy.url().should("include", "#/editor");
+  editorPageAssertion.editorInUrl();
 });
 
 When("Type Article Title", () => {
@@ -63,7 +68,8 @@ When("Click on Publish Article", () => {
 });
 
 Then("Second URL assertion", () => {
-  cy.url().should("include", "#/article/");
+  //cy.url().should("include", "#/article/");
+  editorPageAssertion.articleInUrl();
 });
 
 When("I click on my profile", () => {
@@ -72,7 +78,8 @@ When("I click on my profile", () => {
 });
 
 Then("Third assertion", () => {
-  cy.contains("My Articles").should("be.visible");
+  //cy.contains("My Articles").should("be.visible");
+  profilePageAssertion.myArticleIsVisible();
 });
 
 When("Click on favorite icon", () => {
@@ -81,8 +88,10 @@ When("Click on favorite icon", () => {
 });
 
 Then("Fourth assertion", () => {
-  cy.contains("Favorited Articles").click();
-  cy.url().should("include", "favorites");
+  //cy.contains("Favorited Articles").click();
+  profilePageActions.favoriteArticlePage();
+  //cy.url().should("include", "favorites");
+  profilePageAssertion.favoritesInUrl();
 });
 
 When("Unclick on favorite icon", () => {
@@ -93,5 +102,6 @@ When("Unclick on favorite icon", () => {
 Then("assertion", () => {
   //cy.go('back')
   cy.reload();
-  cy.contains("No articles are here... yet.").should("be.visible");
+  //cy.contains("No articles are here... yet.").should("be.visible");
+  profilePageAssertion.noArticleIsVisible();
 });
