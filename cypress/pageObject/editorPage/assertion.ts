@@ -1,10 +1,7 @@
 class EditorPageAssetion {
-  editorInUrl() {
-    return cy.url().should("include", "#/editor");
-  }
-
   articleInUrl() {
-    return cy.url().should("include", "#/article/");
+    cy.url().should("include", "#/article/");
+    return this;
   }
 }
 

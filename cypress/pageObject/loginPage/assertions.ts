@@ -1,6 +1,7 @@
 class LoginPageAssertion {
   yourFeedIsVisible() {
-    return cy.contains("Your Feed").should("be.visible");
+    cy.contains("Your Feed").should("be.visible");
+    return this;
   }
 }
 

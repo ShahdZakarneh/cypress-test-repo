@@ -1,14 +1,22 @@
 class LoginPageActions {
+  openLoginPage() {
+    cy.visit("#/login");
+    return this;
+  }
+
   typeInEmailInputField(email: string) {
-    return cy.get('input[type="email"]').type(email);
+    cy.get('input[type="email"]').type(email);
+    return this;
   }
 
   typeInPasswordInputField(password: string) {
-    return cy.get('input[type="password"]').type(password);
+    cy.get('input[type="password"]').type(password);
+    return this;
   }
 
   clickOnSignInButton() {
-    return cy.contains("input", "Sign in").click();
+    cy.contains("input", "Sign in").click();
+    return this;
   }
 }
 
