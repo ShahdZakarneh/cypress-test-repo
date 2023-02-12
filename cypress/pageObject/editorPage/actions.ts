@@ -1,26 +1,29 @@
 class EditorPageActions {
   newpostButton() {
-    return cy.get(".nav-link").contains("New Post").click();
+    cy.get(".nav-link").contains("New Post").click();
+    return this;
   }
 
   articletitle(text) {
-    return cy.get('input[placeholder="Article Title"]').type(text);
+    cy.get('input[placeholder="Article Title"]').type(text);
+    return this;
   }
 
   aboutarticle(text) {
-    return cy
-      .get('input[placeholder="What\'s this article about?"]')
-      .type(text);
+    cy.get('input[placeholder="What\'s this article about?"]').type(text);
+    return this;
   }
 
   writearticle(text) {
-    return cy
-      .get('textarea[placeholder="Write your article (in markdown)"]')
-      .type(text);
+    cy.get('textarea[placeholder="Write your article (in markdown)"]').type(
+      text
+    );
+    return this;
   }
 
   publisharticleButton() {
-    return cy.get(".btn").contains("Publish Article").click();
+    cy.get(".btn").contains("Publish Article").click();
+    return this;
   }
 }
 
